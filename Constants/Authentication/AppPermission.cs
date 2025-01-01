@@ -11,6 +11,28 @@ public record AppPermission
     {
         return $"Permission. {service}.{feature}.{action}";
     }
-
 }
+
+public class AppPermissions 
+{
+    private static readonly AppPermission[] _all =
+        [
+            new (AppService.Identity, AppFeature.Users , AppAction.Create , AppRoleGroup.SystemAccess,"Create Users"),
+            new (AppService.Identity, AppFeature.Users , AppAction.Update , AppRoleGroup.SystemAccess,"Update Users"),
+            new (AppService.Identity, AppFeature.Users , AppAction.Read , AppRoleGroup.SystemAccess,"Read Users"),
+            new (AppService.Identity, AppFeature.Users , AppAction.Delete , AppRoleGroup.SystemAccess,"Delete Users"),
+
+            new (AppService.Identity, AppFeature.Roles , AppAction.Create , AppRoleGroup.SystemAccess,"Create Roles"),
+            new (AppService.Identity, AppFeature.Roles , AppAction.Update , AppRoleGroup.SystemAccess,"Update Roles"),
+            new (AppService.Identity, AppFeature.Roles , AppAction.Read , AppRoleGroup.SystemAccess,"Read Roles"),
+            new (AppService.Identity, AppFeature.Roles , AppAction.Delete , AppRoleGroup.SystemAccess,"Delete Roles"),
+
+            new (AppService.Identity, AppFeature.UserRoles , AppAction.Read , AppRoleGroup.SystemAccess,"Read User Roles"),
+            new (AppService.Identity, AppFeature.UserRoles , AppAction.Update , AppRoleGroup.SystemAccess,"Update User Roles"),
+
+
+            new (AppService.Identity, AppFeature.RoleClaims , AppAction.Read , AppRoleGroup.SystemAccess,"Read Role Claims/Permissions"),
+            new (AppService.Identity, AppFeature.RoleClaims , AppAction.Update , AppRoleGroup.SystemAccess,"Update Role Claims/Permissions"),
+        ];
+}  
  
