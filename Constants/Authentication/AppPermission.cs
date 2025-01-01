@@ -1,4 +1,6 @@
-﻿namespace AuthLibrary.Constants.Authentication;
+﻿using System.Collections.ObjectModel;
+
+namespace AuthLibrary.Constants.Authentication;
 
 public record AppPermission
     (string Service,string Feature
@@ -34,5 +36,15 @@ public class AppPermissions
             new (AppService.Identity, AppFeature.RoleClaims , AppAction.Read , AppRoleGroup.SystemAccess,"Read Role Claims/Permissions"),
             new (AppService.Identity, AppFeature.RoleClaims , AppAction.Update , AppRoleGroup.SystemAccess,"Update Role Claims/Permissions"),
         ];
+
+
+    public static IReadOnlyList<AppPermission> AllPermissions { get; } =
+        new ReadOnlyCollection<AppPermission>(_all);
+
+    public static IReadOnlyList<AppPermission> AdminPermissions { get; } =
+        new ReadOnlyCollection<AppPermission>(_all.Where(p => !p.IsBasic).ToArray());
+
+    public static IReadOnlyList<AppPermission> BasicPermissions { get; } =
+            new ReadOnlyCollection<AppPermission>(_all.Where(p => p.IsBasic).ToArray());
 }  
  
